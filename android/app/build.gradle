@@ -21,13 +21,14 @@ android {
         applicationId "com.filmsekhafy.app"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+        versionCode 1
+        versionName "1.0.0"
     }
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
+            // استخدام التوقيع الافتراضي لتجنب مشاكل التوقيع المفقود
+            signingConfig signingConfigs.debug
         }
     }
 }
