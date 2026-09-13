@@ -1,11 +1,8 @@
-name: Build Flutter Web
+name: Build Android APK
 
 on:
   push:
     branches: [ main ]
-
-permissions:
-  contents: write
 
 jobs:
   build:
@@ -16,12 +13,11 @@ jobs:
         with:
           flutter-version: '3.x'
           channel: 'stable'
-      - run: flutter config --enable-web
-      - run: flutter create . --platforms=web
       - run: flutter pub get
-      - run: flutter build web --release --base-href "/film-sekhafy/"
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - run: flutter build apk --release
+      
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/web
+          name: app-release
+          path: build/app/outputs/flutter-apk/app-release.apk
